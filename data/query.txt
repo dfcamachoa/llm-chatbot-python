@@ -1,0 +1,15 @@
+LOAD CSV WITH HEADERS
+FROM 'https://raw.githubusercontent.com/dfcamachoa/llm-chatbot-python/main/data/openai-embeddings.csv'
+AS row
+MATCH (l:Lesson {id: row.lessonId})
+CALL db.create.setNodeVectorProperty(m, 'embedding', apoc.convert.fromJsonList(row.embedding))
+RETURN count(*)
+
+
+CREATE VECTOR INDEX lessonInfo IF NOT EXISTS
+FOR (l:Lesson)
+ON l.embedding
+OPTIONS {indexConfig: {
+ `vector.dimensions`: 1536,
+ `vector.similarity_function`: 'cosine'
+}}

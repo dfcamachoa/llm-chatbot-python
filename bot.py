@@ -2,12 +2,12 @@ import streamlit as st
 from utils import write_message
 from agent import generate_response
 
-openai_api_key = st.secrets['OPENAI_API_KEY']
-openai_model = st.secrets['OPENAI_MODEL']
+# openai_api_key = st.secrets['OPENAI_API_KEY']
+# openai_model = st.secrets['OPENAI_MODEL']
 
 # tag::setup[]
 # Page Config
-st.set_page_config("Ebert", page_icon=":movie_camera:")
+st.set_page_config("MrQuality", page_icon=":construction_worker:")
 # end::setup[]
 
 # tag::session[]
